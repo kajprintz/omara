@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# updates the system
+update() {
+  sudo dnf update --best --allowerasing
+}
+
+cd() {
+  builtin cd "$@" && ls
+}
+
+# colored man pages
+man() {
+  env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[34;5;31m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
+}
+
+# Extract archives - use: extract <archive> [directory]
+# Credits to https://github.com/jelly/Dotfiles/blob/master/.zshrc
+extract() {
+  if [ -z ${1} ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    echo "Usage: extract <archive> [directory]"
+    echo "Example: extract presentation.zip."
+    echo "Valid archive types are:"
+    echo "tar.bz2, tar.gz, tar.xz, tar, bz2, gz, tbz2,"
+    echo "tbz, tgz, lzo, rar, zip, 7z, xz, txz, lzma and tlz"
+  else
+    case "$1" in
+    *.tar.bz2 | *.tbz2 | *.tbz) tar xvjf "$1" ;;
+    *.tgz) tar zxvf "$1" ;;
+    *.tar.gz) tar xvzf "$1" ;;
+    *.tar.xz) tar xvJf "$1" ;;
+    *.tar) tar xvf "$1" ;;
+    *.rar) 7z x "$1" ;;
+    *.zip) unzip "$1" ;;
+    *.7z) 7z x "$1" ;;
+    *.lzo) lzop -d "$1" ;;
+    *.gz) gunzip "$1" ;;
+    *.bz2) bunzip2 "$1" ;;
+    *.Z) uncompress "$1" ;;
+    *.xz | *.txz | *.lzma | *.tlz) xz -d "$1" ;;
+    *) echo "Sorry, '$1' could not be decompressed." ;;
+    esac
+  fi
+}
+
+# Create an archive - use: archive <archive-type> <file>
+# Credits to https://github.com/jelly/Dotfiles/blob/master/.zshrc
+archive() {
+  if [ -z ${1} ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    echo "Usage: archive <archive> [directory]"
+    echo "Example: archive zip presentation"
+    echo "Valid archive types are:"
+    echo "tar.bz2, tar.gz, tar.xz, tar, bz2, gz, tbz2,"
+    echo "tbz, tgz, lzo, rar, zip, 7z, xz, txz, lzma and tlz"
+  else
+    case "$1" in
+    tar.bz2) tar cvjf "${2%%/}.tar.bz2" "${2%%/}/" ;;
+    tbz2) tar cvjf "${2%%/}.tbz2" "${2%%/}/" ;;
+    tbz) tar cvjf "${2%%/}.tbz" "${2%%/}/" ;;
+    tar.xz) tar cvJf "${2%%/}.tar.xz" "${2%%/}/" ;;
+    tar.gz) tar cvzf "${2%%/}.tar.gz" "${2%%/}/" ;;
+    tgz) tar cvjf "${2%%/}.tgz" "${2%%/}/" ;;
+    tar) tar cvf "${2%%/}.tar" "${2%%/}/" ;;
+    rar) rar a "${2}.rar" "$2" ;;
+    zip) zip -r -9 "${2}.zip" "$2" ;;
+    7z) 7z a "${2}.7z" "$2" ;;
+    lzo) lzop -v "$2" ;;
+    gz) gzip -v "$2" ;;
+    bz2) bzip2 -v "$2" ;;
+    xz) xz -v "$2" ;;
+    lzma) lzma -v "$2" ;;
+    k) echo "$1$2" ;;
+    *) echo "Sorry, $1 is an unknown archive type to me." ;;
+    esac
+  fi
+}

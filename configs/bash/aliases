@@ -1,0 +1,34 @@
+# General
+alias sovs='. ~/.bashrc'
+alias up='update'
+alias top='htop'
+
+# Replacements
+alias which='echo "${RED}Using type!${RESET}"; type'
+alias ifconfig='echo "${RED}Use ip!${RESET}"'
+alias netstat='echo "${RED}Use ss!${RESET}"'
+
+# applications
+alias d='docker'
+alias g='git'
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# Config edit
+alias eV='e ~/.config/nvim/init.lua'
+alias eB='e ~/.bashrc'
+alias eBA='e ~/.bash_aliases'
+alias eF='e ~/.bash_functions'
+alias eP='e ~/.profile'
+alias eG='e ~/.gitconfig'
+
+# some ls aliases
+alias ls='ls -hN --color=auto --group-directories-first'
+alias ll='ls -AlhN --color=auto --group-directories-first'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'

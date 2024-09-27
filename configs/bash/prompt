@@ -1,0 +1,9 @@
+# Show Git info in terminal prompt
+if [ -f $OMARA_PATH/configs/bash/git-prompt.sh ]; then
+  . $OMARA_PATH/configs/bash/git-prompt.sh
+
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+fi
+
+PS1='${debian_chroot:+($debian_chroot)}\w \[\033[0;36m\]$(__git_ps1 "[%s] ")\[\033[00m\]\[\033[1;31m\]λ\[\033[00m\] '

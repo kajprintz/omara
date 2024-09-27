@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Only show ascii art header if menu item is not specified
+if [ $# -eq 0 ]; then
+  source $OMARA_PATH/bin/scripts/ascii.sh
+  echo "" # Add spacing
+  echo "                                     $(cat $OMARA_PATH/version)"
+  echo "" # Add spacing
+fi
+
+source $OMARA_PATH/bin/menu.sh
