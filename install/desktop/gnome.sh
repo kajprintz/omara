@@ -33,7 +33,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
 # Set ulauncher to Super+Space
 custom0_keypath="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "@as []"
-gsettings set $custom0_keypath name 'ulauncher-toggle'
+gsettings set $custom0_keypath name 'toggle ulauncher'
 gsettings set $custom0_keypath command 'ulauncher-toggle'
 gsettings set $custom0_keypath binding '<Super>space'
 
@@ -45,6 +45,6 @@ gsettings set $custom1_keypath binding '<Ctrl><Alt>b'
 
 # Start a new kitty window (rather than just switch to the already open one)
 custom2_keypath="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
-gsettings set $custom2_keypath name 'kitty'
-gsettings set $custom2_keypath command 'kitty -o allow_remote_control=yes'
+gsettings set $custom2_keypath name 'open kitty'
+gsettings set $custom2_keypath command 'kitty -o allow_remote_control=yes  --override initial_window_width=120c --override initial_window_height=34c --override remember_window_size=no'
 gsettings set $custom2_keypath binding '<Ctrl><Alt>t'
