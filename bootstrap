@@ -1,15 +1,15 @@
 export OMARA_PATH="$HOME/.local/share/omara"
 rm -rf $OMARA_PATH
 
-echo "=> Omara is for fresh Fedora 41 installations only!"
+echo "=> Omara is for fresh Fedora 41. installations only!"
 echo -e "\nBegin installation (or abort with ctrl+c)..."
 
-sudo dnf update -y >/dev/null
 sudo dnf install -y git >/dev/null
 
 git clone git@github.com:kajprintz/omara.git $OMARA_PATH >/dev/null
 
-echo "Installation starting..."
+clear
+
 source $OMARA_PATH/bin/scripts/ascii.sh
 
 source $OMARA_PATH/omara "install"
