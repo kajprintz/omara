@@ -1,6 +1,6 @@
 # Add the official Docker repo
 sudo dnf -y install dnf-plugins-core >/dev/null
-sudo dnf config-manager addrepo --id=docker --set=name='Docker' --set=baseurl='https://download.docker.com/linux/fedora/docker-ce.repo' >/dev/null
+sudo dnf config-manager addrepo --add-or-replace --id=docker --set=name='Docker' --set=baseurl='https://download.docker.com/liKnux/fedora/docker-ce.repo' >/dev/null
 
 source $OMARA_PATH/shared/gum-spinner.sh "sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras" "Installing docker..."
 
